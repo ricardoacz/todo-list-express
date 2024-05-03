@@ -45,18 +45,24 @@ async function deleteItem(){
     }
 }
 
+// Async function to mark a todo as completed from the database
 async function markComplete(){
+    // Using the DOM to access the todo with are clicking and assign it to a variable
     const itemText = this.parentNode.childNodes[1].innerText
     try{
+        // Sending the put request to the server using Fetch
         const response = await fetch('markComplete', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
+            // Data we are sending to our API in the server (the todo selected)
             body: JSON.stringify({
                 'itemFromJS': itemText
             })
           })
+        // We wait for the response from our server and converted from stringify to json
         const data = await response.json()
         console.log(data)
+        // Refresh browser
         location.reload()
 
     }catch(err){
@@ -64,18 +70,24 @@ async function markComplete(){
     }
 }
 
+// Async function to mark a completed todo as uncompleted from the database
 async function markUnComplete(){
+    // Using the DOM to access the todo with are clicking and assign it to a variable
     const itemText = this.parentNode.childNodes[1].innerText
     try{
+        // Sending the put request to the server using Fetch
         const response = await fetch('markUnComplete', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
+            // Data we are sending to our API in the server (the todo selected)
             body: JSON.stringify({
                 'itemFromJS': itemText
             })
           })
+        // We wait for the response from our server and converted from stringify to json
         const data = await response.json()
         console.log(data)
+        // Refresh browser
         location.reload()
 
     }catch(err){
